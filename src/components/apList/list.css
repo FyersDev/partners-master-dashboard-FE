@@ -1,0 +1,51 @@
+.root {
+    width: 100%;
+}
+.table {
+    min-width: 1020;
+}
+.tableWrapper {
+    overflow-x: auto;
+    border: 1px solid #e0e0e0;
+}
+.progressbar {
+    background-color: #436af5;
+}
+
+.actions-row {
+    margin-bottom: 20px;
+}
+.mr-20 {
+    margin-right: 20px !important;
+}
+
+.MuiMenu-paper {
+    background-color: #fff !important;
+    box-shadow: 0 .125rem .25rem rgba(42,43,46,.1)!important;
+    border: 1px solid #e0e0e0;
+}
+
+.badge-success{
+    background-color: #EAF9EE !important;
+    color: #33C659;
+    border-color: #33C659;
+}
+.badge-completed{
+  background-color: #FFEBEA !important;
+  color: #FF3B2F;
+  border-color: #FF3B2F;
+}
+.badge-pending{
+  background-color: #FFF3E5 !important;
+  color: #FF8C00;
+  border-color: #FF8C00;
+}
+.badge{
+  width: 83px;
+  height: 30px;
+  font-size: 12px;
+  padding: 0.5rem 0.4rem;
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
+}

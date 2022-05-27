@@ -1,0 +1,25 @@
+.MuiPaper-elevation1 {
+  /* box-shadow: 0 0.125rem 0.25rem rgba(42, 43, 46, 0.1) !important; */
+  box-shadow: none !important;
+  background-color: #e0e0e0 !important;
+}
+
+.MuiPaper-rounded {
+  border-radius: 0px !important;
+}
+
+.MuiOutlinedInput-root {
+    background-color: #fff !important;
+    border-radius: 0px !important;
+}
+
+.MuiButton-contained:hover {
+  box-shadow: none !important;
+}
+.MuiButton-contained {
+  box-shadow: none !important;
+}
+.MuiButton-root {
+  transition: none !important;
+  border-radius: 0 !important;
+}
