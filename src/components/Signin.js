@@ -69,10 +69,10 @@ function SignIn(props) {
         </p>
         <form className={classes.form} onSubmit={(e) => props.signin(e, props.username, props.password)}>
           <FormControl margin="normal" required fullWidth>
-            <TextField placeholder="User ID*" variant="outlined" size="small" id="username" name="username" autoComplete="username" autoFocus value={props.username} onChange={props.changeValue} />
+            <input style={{borderRadius: 0}} placeholder="User ID*" className="form-control" variant="outlined" size="small" id="username" name="username" autoComplete="username" autoFocus value={props.username} onChange={props.changeValue} />
           </FormControl>
           <FormControl margin="normal" required fullWidth>
-            <TextField name="password" placeholder="Password*" variant="outlined" size="small" type="password" id="password" autoComplete="current-password" value={props.password} onChange={props.changeValue}/>
+            <input style={{borderRadius: 0}} name="password" className="form-control" placeholder="Password*" variant="outlined" size="small" type="password" id="password" autoComplete="current-password" value={props.password} onChange={props.changeValue}/>
           </FormControl>
           <Button
             type="submit"

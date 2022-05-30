@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Title from "../common/title";
 import { connect } from "react-redux";
 import Table from "@material-ui/core/Table";
@@ -10,12 +10,11 @@ import Paper from "@material-ui/core/Paper";
 import TableHeaders from "../common/tableHeaders";
 import TextField from "@material-ui/core/TextField/TextField";
 import LinearProgress from "@material-ui/core/LinearProgress/LinearProgress";
-import { withStyles } from "@material-ui/core/styles";
 import "./list.css";
 import InputAdornment from "@mui/material/InputAdornment";
 import PersonIcon from "@material-ui/icons/Person";
-import { Select, MenuItem } from "@mui/material";
-import DateRangePicker from "../common/dateRangePickr"
+import DateRangePicker from "../common/dateRangePickr";
+import moment from "moment";
 
 const rows = [
   { id: "added_at", numeric: false, disablePadding: false, label: "Date" },
@@ -28,43 +27,51 @@ const rows = [
 const data = [1, 12, 3, 4, 5, 6, 7];
 
 function TableComponent(props) {
+  const [search, setSearchValue] = useState("")
+  const [status, setStatus] = useState("")
   return (
     <div>
       <Title
         title={"AP List"}
         // RefreshAPI={() => props.ListAPI(props.details.page, props.details.limit, props.details.search, props.details.bundle_id, props.details.station, props.details.package_status, props.details.attempt, props.details.startDate, props.details.endDate, props.details.partner)}
       />
-      <div className="actions-row">
-        <TextField
-          placeholder="Search by AP ID"
-          className="mr-20"
-          variant="outlined"
-          size="small"
-          InputProps={{
-            startAdornment: (
-              <InputAdornment position="start">
-                <PersonIcon />
-              </InputAdornment>
-            ),
-          }}
-        />
-        <Select
-          labelId="demo-simple-select-label"
-          id="demo-simple-select"
-          value="0"
-          size="small"
-          className="mr-20"
-            onChange={handleChange}
-        >
-          <MenuItem value="0">Select Status - All</MenuItem>
-          <MenuItem value={10}>Active</MenuItem>
-          <MenuItem value={20}>Inactive</MenuItem>
-        </Select>
-        <DateRangePicker />
+      <div className="actions-row row col-lg-12">
+          <div className="col-lg-3">
+            <TextField
+              placeholder="Search by AP ID"
+              // className="mr-20"
+              variant="outlined"
+              size="small"
+              value={search}
+              onChange={e => setSearchValue(e.target.value)}
+              InputProps={{
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <PersonIcon />
+                  </InputAdornment>
+                ),
+              }}
+            />
+          </div>
+          <div className="col-lg-3">
+            <select
+              id="demo-simple-select"
+              value={status}
+              size="small"
+              onChange={e => setStatus(e.target.value)}
+            >
+              <option value="">Select Status - All</option>
+              <option value={10}>Active</option>
+              <option value={20}>Inactive</option>
+            </select>
+          </div>
+          <div className="col-lg-4">
+          <DateRangePicker startDate={new Date(moment().startOf('month'))} endDate={new Date()} maxDate={new Date()} />
+          </div>
       </div>
-      <div style={{height: 5}}>
-                <LinearProgress className={"progressbar"} />
-            </div>
+      {/* <div style={{ height: 5 }}>
+        <LinearProgress className={"progressbar"} />
+      </div> */}
       <Paper className={"root"}>
         <div className={"tableWrapper"}>
           <Table className={"table"} aria-labelledby="tableTitle">
@@ -78,7 +85,7 @@ function TableComponent(props) {
                     <TableCell>chytra.kr@gmail.com</TableCell>
                     <TableCell>1234567890</TableCell>
                     <TableCell>
-                      <span className="badge badge-pill badge-success">
+                      <span className="badgef badgef-pill badgef-success">
                         Active
                       </span>
                     </TableCell>
@@ -95,8 +102,8 @@ function TableComponent(props) {
         </div>
         <TablePagination
           rowsPerPageOptions={[10]}
-          showFirstButton={true}
-          showLastButton={true}
+          // showFirstButton={true}
+          // showLastButton={true}
           component="div"
           count={100}
           rowsPerPage={10}

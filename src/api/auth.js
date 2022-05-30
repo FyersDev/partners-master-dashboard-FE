@@ -8,6 +8,7 @@ import {
   AuthStatus,
   SetActionPermissions,
 } from "../store/actions/index";
+import {SelectedRoute} from "../store/actions/common"
 
 import api from "./base";
 import { STATUS_API } from "./apis";
@@ -56,6 +57,7 @@ export function LogoutAPI() {
     localStorage.setItem("user_id", "");
     dispatch(SetActionPermissions([]));
     dispatch(SignOut());
+    dispatch(SelectedRoute("/ap-list"))
   };
 }
 
@@ -63,21 +65,22 @@ export function LogoutAPI() {
 export function statusAPI() {
   return function (dispatch) {
     let user_id = localStorage.getItem("user_id");
-    api(STATUS_API + `?user_id=${user_id}`).then(
-      (resp) => {
-        // dispatch(SetActionPermissions(resp.log_action_permissions))
-        dispatch(SignIn(resp));
-        dispatch(AuthStatus(true));
-      },
-      (error) => {
-        if (error.message === "Network Error") {
-          return alert("Check your internet connection");
-        }
-        dispatch(AuthStatus(true));
-        if (error.response && error.response.status === 401) {
-          return dispatch(SignOut());
-        }
-      }
-    );
+    // api(STATUS_API + `?user_id=${user_id}`).then(
+    //   (resp) => {
+    //     // dispatch(SetActionPermissions(resp.log_action_permissions))
+    //     dispatch(SignIn(resp));
+    //     dispatch(AuthStatus(true));
+    //   },
+    //   (error) => {
+    //     if (error.message === "Network Error") {
+    //       return alert("Check your internet connection");
+    //     }
+    //     dispatch(AuthStatus(true));
+    //     if (error.response && error.response.status === 401) {
+    //       return dispatch(SignOut());
+    //     }
+    //   }
+    // );
+    dispatch(AuthStatus(true));
   };
 }

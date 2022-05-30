@@ -25,6 +25,7 @@ import MenuItem from "@material-ui/core/MenuItem/MenuItem";
 import ArrowIcon from "@material-ui/icons/KeyboardArrowDown";
 import LogoutIcon from "@material-ui/icons/SubdirectoryArrowRight";
 import "./layout.css";
+import { SelectedRoute } from "../store/actions/common";
 
 const drawerWidth = 230;
 
@@ -206,6 +207,11 @@ class MiniDrawer extends React.Component {
     if (!this.props.auth) {
       return <div>Loading...</div>;
     }
+    var url = window.location.pathname;
+    var filename = url.substring(url.lastIndexOf("/") + 1);
+    if (filename !== "/") {
+      this.props.SelectedRoute(`/${filename}`);
+    }
     let menuItems = [];
     let routes = [];
     for (let i = 0; i < this.props.menuItems.length; i++) {
@@ -275,7 +281,7 @@ class MiniDrawer extends React.Component {
               noWrap
             >
               {/* FYERS */}
-              <div style={{display: "flex"}}>
+              <div style={{ display: "flex" }}>
                 <img
                   src="https://assets.fyers.in/images/logo-mark-white.svg"
                   alt="FYERS"
@@ -314,16 +320,27 @@ class MiniDrawer extends React.Component {
             </IconButton>
           </div> */}
           {/* <Divider /> */}
-          <List style={{marginTop: 70}}>
+          <List style={{ marginTop: 70 }}>
             {this.props.menuItems.map((item) => {
               return (
                 <div key={item.name}>
+                  {console.log(this.props.selectedRoute, "selectedRoute")}
+                  {console.log(item.link, "link")}
                   {!item.sub ? (
                     <ListItem
                       button
                       dense
                       key={item.link}
-                      onClick={() => this.props.history.push(item.link)}
+                      onClick={() => {
+                        this.props.SelectedRoute(item.link);
+                        this.props.history.push(item.link);
+                      }}
+                      style={{
+                        backgroundColor:
+                          item.link === this.props.selectedRoute
+                            ? "#e0e0e0"
+                            : "#fff",
+                      }}
                     >
                       <ListItemIcon style={{ fontSize: "14px" }}>
                         {item.icon}
@@ -338,7 +355,16 @@ class MiniDrawer extends React.Component {
                         key={item.name}
                         aria-controls="simple-menu"
                         aria-haspopup="true"
-                        onClick={this.handleClick}
+                        onClick={(e) => {
+                          this.handleClick(e.currentTarget);
+                          this.props.SelectedRoute(item.link);
+                        }}
+                        style={{
+                          backgroundColor:
+                            item.link === this.props.selectedRoute
+                              ? "#e0e0e0"
+                              : "#fff",
+                        }}
                       >
                         <ListItemIcon style={{ fontSize: "14px" }}>
                           {item.icon}
@@ -359,6 +385,7 @@ class MiniDrawer extends React.Component {
                               onClick={(e) => {
                                 this.handleMenuItemClick(subMenu);
                                 this.handleClose();
+                                // this.props.SelectedRoute(subMenu.link);
                               }}
                             >
                               {subMenu.name}
@@ -407,10 +434,12 @@ const mapStateToProps = (state) => ({
   menuItems: state.admin.menuList,
   routes: state.admin.routes,
   permissions: state.login.actionPermissions,
+  selectedRoute: state.common.selectedRoute,
 });
 
 const mapDispatchToProps = {
   logoutAPI: LogoutAPI,
+  SelectedRoute: SelectedRoute,
 };
 
 //export default withStyles(styles, { withTheme: true })(MiniDrawer);
