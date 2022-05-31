@@ -12,9 +12,13 @@ import TextField from "@material-ui/core/TextField/TextField";
 import LinearProgress from "@material-ui/core/LinearProgress/LinearProgress";
 import "./list.css";
 import InputAdornment from "@mui/material/InputAdornment";
-import PersonIcon from "@material-ui/icons/Person";
+import SearchIcon from "@material-ui/icons/Search";
 import DateRangePicker from "../common/dateRangePickr";
 import moment from "moment";
+// import DownloadForOfflineRoundedIcon from '@material-ui/icons/DownloadForOfflineRounded';
+// import DownloadForOfflineRoundedIcon from "@material-ui/icons/DownloadForOfflineRounded";
+import DownloadForOfflineRoundedIcon from '@mui/icons-material/DownloadForOfflineRounded';
+
 
 const rows = [
   { id: "added_at", numeric: false, disablePadding: false, label: "Date" },
@@ -27,47 +31,54 @@ const rows = [
 const data = [1, 12, 3, 4, 5, 6, 7];
 
 function TableComponent(props) {
-  const [search, setSearchValue] = useState("")
-  const [status, setStatus] = useState("")
+  const [search, setSearchValue] = useState("");
+  const [status, setStatus] = useState("");
   return (
     <div>
       <Title
         title={"AP List"}
         // RefreshAPI={() => props.ListAPI(props.details.page, props.details.limit, props.details.search, props.details.bundle_id, props.details.station, props.details.package_status, props.details.attempt, props.details.startDate, props.details.endDate, props.details.partner)}
       />
-      <div className="actions-row row col-lg-12">
-          <div className="col-lg-3">
-            <TextField
-              placeholder="Search by AP ID"
-              // className="mr-20"
-              variant="outlined"
-              size="small"
+      <div className="actions-row  col-lg-12">
+        <div className="test1">
+          <div className="inner-addon left-addon">
+            <SearchIcon className="glyphicon" />
+            <input
+              type="text"
+              className="form-control search"
               value={search}
-              onChange={e => setSearchValue(e.target.value)}
-              InputProps={{
-                startAdornment: (
-                  <InputAdornment position="start">
-                    <PersonIcon />
-                  </InputAdornment>
-                ),
-              }}
+              onChange={(e) => setSearchValue(e.target.value)}
+              placeholder="Search by AP ID"
             />
           </div>
-          <div className="col-lg-3">
-            <select
-              id="demo-simple-select"
-              value={status}
-              size="small"
-              onChange={e => setStatus(e.target.value)}
-            >
-              <option value="">Select Status - All</option>
-              <option value={10}>Active</option>
-              <option value={20}>Inactive</option>
-            </select>
-          </div>
-          <div className="col-lg-4">
-          <DateRangePicker startDate={new Date(moment().startOf('month'))} endDate={new Date()} maxDate={new Date()} />
-          </div>
+        </div>
+        <div className="test2">
+          <select
+            id="demo-simple-select"
+            value={status}
+            size="small"
+            onChange={(e) => setStatus(e.target.value)}
+          >
+            <option value="">Select Status - All</option>
+            <option value={10}>Active</option>
+            <option value={20}>Inactive</option>
+          </select>
+        </div>
+        <div className="test3">
+          <DateRangePicker
+            startDate={new Date(moment().startOf("month"))}
+            endDate={new Date()}
+            maxDate={new Date()}
+          />
+        </div>
+        <div className="test4">
+        <button className="custom-button btn-primarym filter-btn">
+            Submit
+          </button>
+        </div>
+        <div className="test5">
+          <DownloadForOfflineRoundedIcon color={"primary"} className="pull-right" fontSize="large"/>
+        </div>
       </div>
       {/* <div style={{ height: 5 }}>
         <LinearProgress className={"progressbar"} />

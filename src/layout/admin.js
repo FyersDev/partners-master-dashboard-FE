@@ -307,25 +307,24 @@ class MiniDrawer extends React.Component {
           }}
           open={this.state.open}
         >
-          {/* <div className={classes.toolbar}>
+          <div className={classes.toolbar}>
+          <span style={{marginRight: 30, fontSize: '14px', fontWeight: 'bold', color: '#1976d2'}}>Version 1.0.0</span>
             <IconButton
               style={{ padding: "3px" }}
               onClick={this.handleDrawerClose}
             >
               {this.state.open ? (
-                <ChevronLeftIcon color={"secondary"} />
+                <ChevronLeftIcon color={"primary"} />
               ) : (
-                <ChevronRightIcon color={"secondary"} />
+                <ChevronRightIcon color={"primary"} />
               )}
             </IconButton>
-          </div> */}
-          {/* <Divider /> */}
-          <List style={{ marginTop: 70 }}>
+          </div>
+          <Divider />
+          <List>
             {this.props.menuItems.map((item) => {
               return (
                 <div key={item.name}>
-                  {console.log(this.props.selectedRoute, "selectedRoute")}
-                  {console.log(item.link, "link")}
                   {!item.sub ? (
                     <ListItem
                       button
