@@ -10,3 +10,10 @@
     background-color: white !important;
     border: 1px solid grey !important;
 }
+
+.css-16awh2u-MuiAutocomplete-root .MuiOutlinedInput-root {
+    padding: 0 !important;
+}
+.css-julti5-MuiSwitch-root {
+    margin-left: -9px !important;
+}

@@ -77,7 +77,7 @@ function TableComponent(props) {
           </button>
         </div>
         <div className="test5">
-          <DownloadForOfflineRoundedIcon color={"primary"} className="pull-right" fontSize="large"/>
+          <DownloadForOfflineRoundedIcon color={"primary"} fontSize="large"/>
         </div>
       </div>
       {/* <div style={{ height: 5 }}>

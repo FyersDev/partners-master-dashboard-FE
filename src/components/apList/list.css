@@ -16,6 +16,9 @@
   margin-bottom: 10px;
   display: flex;
 }
+.actions-row .test5:last-child{
+ margin-left:auto;
+}
 .mr-20 {
   margin-right: 20px !important;
 }
@@ -95,8 +98,8 @@ select:focus-visible {
   margin-bottom: 4px;
 }
 .test5 {
-  width: 230px;
-  margin-top: 3px;
+  /* width: 230px; */
+  margin-top: 5px;
 }
 .inner-addon {
   position: relative;
@@ -158,8 +161,8 @@ select:focus-visible {
     margin-left: 0px;
     margin-bottom: 12px;
   }
-  .test5 {
-    /* width: 230px; */
-    /* margin-top: 3px; */
-  }
+  .actions-row .test5:last-child{
+    margin-left:0px;
+    margin-top: -6px;
+   }
 }

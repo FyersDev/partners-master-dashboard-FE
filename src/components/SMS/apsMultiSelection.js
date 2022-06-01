@@ -10,8 +10,7 @@ export default function FixedTags(props) {
         console.log(input)
     }
     function onChange(values) {
-      debugger
-      props.onChange({target: {name: "dltSender", value: values}})
+      props.onChange({target: {name: "users", value: values}})
     }
   return (
     <Autocomplete
@@ -35,7 +34,7 @@ export default function FixedTags(props) {
         ))
       }
       style={{ width: "100%" }}
-      limitTags={5}
+      limitTags={3}
       loading
       filterSelectedOptions
       disablePortal
@@ -46,7 +45,6 @@ export default function FixedTags(props) {
             "& fieldset": { top: 0 },
           }}
           {...params}
-          placeholder="Select Users"
         />
       )}
     />

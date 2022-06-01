@@ -44,7 +44,7 @@ export function LoginAPI(e, username, password) {
     // 		setTimeout(()=>dispatch(SignInFail(false, [])), 3000);
     // 	});
     localStorage.setItem("token", "response.data.auth_token");
-    localStorage.setItem("user_id", "Chytra K R");
+    localStorage.setItem("user_id", "Chytra");
     dispatch(SignIn({}));
     dispatch(AuthStatus(true));
   };
