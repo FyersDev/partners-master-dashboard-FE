@@ -16,9 +16,13 @@
   font-weight: 600 !important;
 }
 
-/* .MuiList-padding {
-  margin-top: 61px !important;
-} */
+.MuiList-padding {
+  padding-top: 0px !important;
+}
+
+.MuiPaper-elevation4 {
+  box-shadow: none !important;
+}
 
 /* @media screen and (max-width: 891px) {
       margin-right: 0;
