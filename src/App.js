@@ -1,13 +1,18 @@
 import React, { Component } from 'react';
 import './App.css';
+
 import Home from './pages/Home';
 import Admin from './layout/admin';
-import { HashRouter as Router, Route, Switch } from "react-router-dom";
+import ForgotPassword from "./pages/forgotPassword"
+
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { MuiThemeProvider } from '@material-ui/core/styles';
 import theme from './style';
 
 import { connect } from 'react-redux';
 import {LogoutAPI, statusAPI} from './api/auth';
+import { GoogleOAuthProvider } from '@react-oauth/google';
+
 
 class App extends Component {
   componentWillMount() {
@@ -22,6 +27,7 @@ class App extends Component {
             <Route
               path="/" exact
               component={(routeProps) => (<Home {...routeProps} isLoggedIn={this.props.isLoggedIn}/>)}/>
+              <Route path="/forgot-password" component={ForgotPassword} />
             <Route path="/" component={Admin} logoutAPI={this.props.logoutAPI} />
           </Switch>
         </Router>

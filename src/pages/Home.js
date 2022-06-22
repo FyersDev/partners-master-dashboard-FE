@@ -5,7 +5,7 @@ import { Redirect } from "react-router-dom";
 import Snackbar from "@material-ui/core/Snackbar";
 
 import { connect } from "react-redux";
-import { LoginAPI } from "../api/auth";
+import { GoogleLoginAPI, LoginAPI } from "../api/auth";
 
 class Login extends Component {
   constructor(props) {
@@ -69,6 +69,7 @@ class Login extends Component {
           password={this.state.password}
           changeValue={this.changeValue}
           signin={this.props.signIn}
+          googleSignin={this.props.googleSignin}
         />
       </div>
     );
@@ -91,6 +92,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = {
   signIn: LoginAPI,
+  googleSignin: GoogleLoginAPI
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Login);

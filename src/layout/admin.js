@@ -23,7 +23,6 @@ import Menu from "@material-ui/core/Menu/Menu";
 import MenuItem from "@material-ui/core/MenuItem/MenuItem";
 
 import ArrowIcon from "@material-ui/icons/KeyboardArrowDown";
-import LogoutIcon from "@material-ui/icons/SubdirectoryArrowRight";
 import "./layout.css";
 import { SelectedRoute } from "../store/actions/common";
 
@@ -151,7 +150,7 @@ function CustomizedMenus(props) {
     <div>
       <Button
         //variant="inherent"
-        style={{ color: "white" }}
+        style={{ color: "white", fontWeight: 600 }}
         onClick={handleClick}
       >
         {localStorage.user_id} <ArrowIcon />
@@ -164,9 +163,15 @@ function CustomizedMenus(props) {
         onClose={handleClose}
       >
         <StyledMenuItem onClick={props.logoutAPI}>
-          <ListItemIcon>
+          {/* <ListItemIcon>
             <LogoutIcon />
-          </ListItemIcon>
+          </ListItemIcon> */}
+          <ListItemText primary={"Reset Password"} />
+        </StyledMenuItem>
+        <StyledMenuItem onClick={props.logoutAPI}>
+          {/* <ListItemIcon>
+            <LogoutIcon />
+          </ListItemIcon> */}
           <ListItemText primary={"Logout"} />
         </StyledMenuItem>
       </StyledMenu>
@@ -197,6 +202,14 @@ class MiniDrawer extends React.Component {
   handleMenuItemClick = (subMenu) => {
     this.props.history.push(subMenu.link);
   };
+  componentDidMount() {
+    let url = window.location.href;
+    let last = url ? url.substring(url.lastIndexOf("/")) : "/";
+    if (last !== "/") {
+      this.props.SelectedRoute(last);
+    }
+  }
+
   render() {
     const { classes } = this.props;
     let redirectToHome;
@@ -205,7 +218,7 @@ class MiniDrawer extends React.Component {
     }
 
     if (!this.props.auth) {
-      return <div>Loading...</div>;
+      return <div>Please do login</div>;
     }
     var url = window.location.pathname;
     var filename = url.substring(url.lastIndexOf("/") + 1);
@@ -308,7 +321,16 @@ class MiniDrawer extends React.Component {
           open={this.state.open}
         >
           <div className={classes.toolbar}>
-          <span style={{marginRight: 30, fontSize: '14px', fontWeight: 'bold', color: '#1976d2'}}>Version 1.0.0</span>
+            <span
+              style={{
+                marginRight: 30,
+                fontSize: "14px",
+                fontWeight: "bold",
+                color: "#1976d2",
+              }}
+            >
+              Version 1.0.0
+            </span>
             <IconButton
               style={{ padding: "3px" }}
               onClick={this.handleDrawerClose}

@@ -18,7 +18,7 @@ import moment from "moment";
 // import DownloadForOfflineRoundedIcon from '@material-ui/icons/DownloadForOfflineRounded';
 // import DownloadForOfflineRoundedIcon from "@material-ui/icons/DownloadForOfflineRounded";
 import DownloadForOfflineRoundedIcon from '@mui/icons-material/DownloadForOfflineRounded';
-
+import Pagination from '@mui/material/Pagination';
 
 const rows = [
   { id: "added_at", numeric: false, disablePadding: false, label: "Date" },
@@ -88,21 +88,19 @@ function TableComponent(props) {
           <Table className={"table"} aria-labelledby="tableTitle">
             <TableHeaders headers={rows} numSelected={100} rowCount={100} />
             <TableBody style={{ background: "#fff" }}>
-              {data.map((n) => {
-                return (
-                  <TableRow key={n}>
-                    <TableCell>25 May 2022</TableCell>
-                    <TableCell>AP0120</TableCell>
-                    <TableCell>chytra.kr@gmail.com</TableCell>
-                    <TableCell>1234567890</TableCell>
-                    <TableCell>
-                      <span className="badgef badgef-pill badgef-success">
-                        Active
-                      </span>
-                    </TableCell>
-                  </TableRow>
-                );
-              })}
+              {data.map((n) => (
+                <TableRow key={n}>
+                  <TableCell>25 May 2022</TableCell>
+                  <TableCell>AP0120</TableCell>
+                  <TableCell>chytra.kr@gmail.com</TableCell>
+                  <TableCell>1234567890</TableCell>
+                  <TableCell>
+                    <span className="badgef badgef-pill badgef-success">
+                      Active
+                    </span>
+                  </TableCell>
+                </TableRow>
+              ))}
               {/* {emptyRows > 0 && (
                                 <TableRow style={{ height: 49 * emptyRows }}>
                                     <TableCell colSpan={8} />
@@ -110,8 +108,9 @@ function TableComponent(props) {
                             )} */}
             </TableBody>
           </Table>
+          <Pagination siblingCount={2} showFirstButton showLastButton className="pull-right" count={10} color="primary" />
         </div>
-        <TablePagination
+        {/* <TablePagination
           rowsPerPageOptions={[10]}
           // showFirstButton={true}
           // showLastButton={true}
@@ -127,7 +126,7 @@ function TableComponent(props) {
           }}
           // onChangePage={(event, page)=>props.updateQuery({page: page + 1})}
           // onChangeRowsPerPage={(event)=>props.updateQuery({limit: event.target.value, page: 1})}
-        />
+        /> */}
       </Paper>
     </div>
   );
